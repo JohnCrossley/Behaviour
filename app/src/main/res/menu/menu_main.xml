@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:application="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jccword.behaviour.MainActivity">
+    <item
+        android:id="@+id/manageChildren"
+        android:orderInCategory="100"
+        android:title="@string/manageChildren"
+        application:showAsAction="never" />
+</menu>

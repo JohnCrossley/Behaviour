@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/tile"
+    android:layout_height="@dimen/tile"
+    android:background="@drawable/ic_person_black_90dp">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/textOverImageOverlayBackground"
+        android:textColor="@color/colorAccent"
+        android:lines="2"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        tools:text="Child\nOne"
+        />
+
+    <ImageView
+        android:id="@+id/selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/ic_done_color_accent_32dp" />
+
+</FrameLayout>

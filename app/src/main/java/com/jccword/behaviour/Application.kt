@@ -1,0 +1,28 @@
+package com.jccword.behaviour
+
+import com.jccword.behaviour.di.component.ApplicationComponent
+import com.jccword.behaviour.di.component.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+
+class Application : DaggerApplication() {
+
+    var component: ApplicationComponent = DaggerApplicationComponent.builder().app(this).build()
+
+    init {
+        component.inject(this)
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        System.out.println("[JCC] - APP START ***********************************************************************")
+    }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return component
+    }
+
+    fun component(): ApplicationComponent = component
+
+}

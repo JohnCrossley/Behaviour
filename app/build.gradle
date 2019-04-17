@@ -1,0 +1,135 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.jccword.behaviour"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
+        sourceSets {
+            androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+ext {
+    versions = [
+            app_compat: "1.1.0-alpha05",
+            rxjava: "2.2.7",
+            rxandroid: "2.1.1",
+            dagger: "2.22.1",
+            room: "2.1.0-beta01",
+            core_ktx: "1.0.2",
+            fragment_ktx: "1.0.0",
+            palette_ktx: "1.0.0",
+            sqlite_ktx: "2.0.1",
+            collection_ktx: "1.0.0",
+            lifecycle_viewmodel_ktx: "2.0.0",
+            lifecycle_reactivestreams_ktx: "2.0.0",
+            work_runtime_ktx: "1.0.1",
+
+            recyclerview: "1.0.0",
+            recyclerview_selection: "1.0.0",
+            material_design: "1.0.0",
+            lifecycle_extensions: "2.2.0-alpha01",
+            lifecycler_compiler: "2.2.0-alpha01",
+
+            constraintlayout: "1.1.3",
+            legacy_support_v4: "1.0.0",
+
+            junit: "4.12",
+            test_runner: "1.2.0-beta01",
+            espresso_core: "3.2.0-beta01"
+        ]
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // CORE ===================================================================
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
+
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+
+    // UI =====================================================================
+
+    implementation "androidx.appcompat:appcompat:$versions.app_compat"
+
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    implementation "androidx.recyclerview:recyclerview-selection:$versions.recyclerview_selection"
+
+    implementation "com.google.android.material:material:$versions.material_design"
+
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    //implementation "androidx.legacy:legacy-support-v4:$versions.legacy_support_v4"
+
+    // LIFECYCLE ==============================================================
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_extensions"
+    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycler_compiler"
+
+    // DATABASE ===============================================================
+
+    implementation "androidx.room:room-runtime:$versions.room"
+    implementation "androidx.room:room-rxjava2:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+
+    // KTX ====================================================================
+
+    implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.fragment:fragment-ktx:$versions.fragment_ktx"
+    implementation "androidx.palette:palette-ktx:$versions.palette_ktx"
+    implementation "androidx.sqlite:sqlite-ktx:$versions.sqlite_ktx"
+    implementation "androidx.collection:collection-ktx:$versions.collection_ktx"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle_viewmodel_ktx"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.lifecycle_reactivestreams_ktx"
+    implementation "android.arch.work:work-runtime-ktx:$versions.work_runtime_ktx"
+
+
+
+
+    // TEST ===================================================================
+
+    testImplementation "junit:junit:$versions.junit"
+
+    androidTestImplementation "androidx.test:runner:$versions.test_runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+}
+repositories {
+    mavenCentral()
+}

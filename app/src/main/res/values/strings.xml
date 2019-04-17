@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Behaviour</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="smile">😀</string>
+    <string name="frown">☹️</string>
+    <string name="dichotomy">Dichotomy</string>
+    <string name="child">Child</string>
+    <string name="next">Next</string>
+    <string name="manageChildren">Manage children</string>
+
+    <string name="add_child_success">Successfully added child to database</string>
+    <string name="add_child_failed">Failed to add child to database</string>
+
+    <string name="load_children_failed">Unable to load children from database</string>
+
+    <string name="save_record_success">Successfully saved record</string>
+    <string name="save_record_failed">Failed to save record</string>
+
+    <string name="no_behaviours_dialog">You don\'t have any behaviours setup in the database. Would you like to add the default set (you can always change them later) or start creating them now?</string>
+    <string name="no_behaviours_dialog_title">No saved behaviours</string>
+    <string name="no_behaviours_dialog_add_defaults">Defaults</string>
+    <string name="no_behaviours_dialog_customise">Customise</string>
+    <string name="to_dashboard">Back to dashboard</string>
+</resources>
