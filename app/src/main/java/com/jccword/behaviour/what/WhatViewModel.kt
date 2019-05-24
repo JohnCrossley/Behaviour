@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class WhatViewModel(behaviourRepository: BehaviourRepository, val initDatabase: InitDatabase) : ViewModel() {
+class WhatViewModel(behaviourRepository: BehaviourRepository, private val initDatabase: InitDatabase) : ViewModel() {
 
     val state = MediatorLiveData<State>()
     val valid = MediatorLiveData<Boolean>()
@@ -50,7 +50,7 @@ class WhatViewModel(behaviourRepository: BehaviourRepository, val initDatabase: 
     }
 
     fun addDefaultBehaviours() {
-        subscriptions.add(initDatabase.run()
+        subscriptions.add(initDatabase.addDefaultBehaviours()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { state.value = State.LOADING }

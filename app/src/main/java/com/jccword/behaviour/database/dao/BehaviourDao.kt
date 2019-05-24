@@ -20,4 +20,7 @@ interface BehaviourDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(behaviourEntity: BehaviourEntity): Single<Long>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertBatch(vararg behaviourEntity: BehaviourEntity): Single<List<Long>>
+
 }
