@@ -61,7 +61,7 @@ class WhatFragment : DaggerFragment() {
                 BehaviourViewHolderItemDetailsLookup(behavioursRecyclerView),
                 StorageStrategy.createLongStorage()
             )
-            .withSelectionPredicate(SelectionPredicates.createSelectAnything())
+            .withSelectionPredicate(SelectionPredicates.createSelectSingleAnything())
             .build()
 
         adapter.tracker = tracker
