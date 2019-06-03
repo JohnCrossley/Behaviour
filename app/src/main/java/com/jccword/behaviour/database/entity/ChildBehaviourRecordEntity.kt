@@ -16,5 +16,7 @@ data class ChildBehaviourRecordEntity(
 
     val behaviourId: Long,
 
+    val stars: Short,
+
     val created: Calendar
 )

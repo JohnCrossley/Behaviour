@@ -18,6 +18,7 @@ class ChildBehaviourRecordRepository @Inject constructor(private val childBehavi
                     dichotomy = recording.dichotomy,
                     childId = recording.childrenIds[it],
                     behaviourId = recording.behaviourId,
+                    stars = recording.stars,
                     created = Calendar.getInstance())
         }
 

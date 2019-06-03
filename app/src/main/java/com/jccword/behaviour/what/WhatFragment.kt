@@ -93,7 +93,7 @@ class WhatFragment : DaggerFragment() {
 
         next.setOnClickListener {
             val recording = arguments?.get(RECORDING) as Recording
-            recording.setBehaviour(model.selected.value ?: throw IllegalArgumentException("No behaviour selection"))
+            recording.behaviourId = model.selected.value ?: throw IllegalArgumentException("No behaviour selection")
 
             navigation.toSummary(recording)
         }
