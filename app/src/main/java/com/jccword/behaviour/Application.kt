@@ -1,5 +1,6 @@
 package com.jccword.behaviour
 
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.jccword.behaviour.di.component.ApplicationComponent
 import com.jccword.behaviour.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
@@ -15,6 +16,7 @@ class Application : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        AndroidThreeTen.init(this)
 
         System.out.println("[JCC] - APP START ***********************************************************************")
     }
