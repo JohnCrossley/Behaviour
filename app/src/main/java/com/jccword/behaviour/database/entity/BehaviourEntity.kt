@@ -6,7 +6,7 @@ import com.jccword.behaviour.domain.Dichotomy
 
 @Entity(tableName = "behaviour")
 data class BehaviourEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long? = null,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,
     val stars: Int,
     val dichotomy: Dichotomy = Dichotomy.BOTH

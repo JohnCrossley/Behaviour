@@ -12,6 +12,7 @@ import com.jccword.behaviour.database.repository.BehaviourRepository
 import com.jccword.behaviour.database.repository.ChildRepository
 import com.jccword.behaviour.database.repository.ChildBehaviourRecordRepository
 import com.jccword.behaviour.di.component.DaggerInjectableModelViewFactoryComponent
+import com.jccword.behaviour.domain.UserSession
 import com.jccword.behaviour.managechildren.ManageChildrenViewModel
 import com.jccword.behaviour.summary.SummaryViewModel
 import com.jccword.behaviour.what.WhatViewModel
@@ -27,6 +28,9 @@ class InjectableModelViewFactory @Inject constructor(application: Application, m
 
     @Inject
     lateinit var childBehaviourRecordRepository: ChildBehaviourRecordRepository
+
+    @Inject
+    lateinit var userSession: UserSession
 
     @Inject
     lateinit var initDatabase: InitDatabase
@@ -47,9 +51,9 @@ class InjectableModelViewFactory @Inject constructor(application: Application, m
             modelClass.isAssignableFrom(DashboardViewModel::class.java) -> DashboardViewModel() as T
             modelClass.isAssignableFrom(ManageChildrenViewModel::class.java) -> ManageChildrenViewModel(childRepository) as T
             modelClass.isAssignableFrom(AddChildViewModel::class.java) -> AddChildViewModel(childRepository) as T
-            modelClass.isAssignableFrom(WhoViewModel::class.java) -> WhoViewModel(childRepository) as T
-            modelClass.isAssignableFrom(WhatViewModel::class.java) -> WhatViewModel(behaviourRepository, initDatabase) as T
-            modelClass.isAssignableFrom(SummaryViewModel::class.java) -> SummaryViewModel(childBehaviourRecordRepository) as T
+            modelClass.isAssignableFrom(WhoViewModel::class.java) -> WhoViewModel(userSession, childRepository) as T
+            modelClass.isAssignableFrom(WhatViewModel::class.java) -> WhatViewModel(userSession, behaviourRepository, initDatabase) as T
+            modelClass.isAssignableFrom(SummaryViewModel::class.java) -> SummaryViewModel(userSession, childBehaviourRecordRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel: $modelClass")
         }
     }

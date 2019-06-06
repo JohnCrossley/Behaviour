@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jccword.behaviour.R
+import com.jccword.behaviour.database.entity.ChildBehaviourRecordEntity
 import com.jccword.behaviour.di.InjectableModelViewFactory
-import com.jccword.behaviour.domain.Recording
+import com.jccword.behaviour.ext.startOfWeek
 import com.jccword.behaviour.ui.Navigation
 import com.jccword.behaviour.ui.NotificationUi
 import com.jccword.behaviour.ui.ProgressUi
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_summary.*
+import org.threeten.bp.LocalDate
 import javax.inject.Inject
 
 class SummaryFragment : DaggerFragment() {
@@ -54,33 +56,37 @@ class SummaryFragment : DaggerFragment() {
                     notificationUi.showMessage(R.string.save_record_success)
                     dashboard.visibility = View.VISIBLE
                 }
+                State.FETCHED_SUMMARY -> {
+                    dashboard.visibility = View.VISIBLE
+                    dump(model.summary.value!!)
+                }
                 State.FAIL -> notificationUi.showMessage(R.string.save_record_failed)
                 null -> IllegalArgumentException("State is null")
             }
         })
 
-        arguments?.get(RECORDING).let {
-            if (it is Recording) {
-                model.save(it)
-                arguments?.remove(RECORDING)
+        model.save()
+    }
+
+    private fun dump(summary: Map<Long, List<ChildBehaviourRecordEntity>>) {
+        for(id in summary) {
+            println("[JCC] SummaryFragment.dump - CHILD ID: ${id.key}")
+            
+            for(record in id.value) {
+                println("[JCC] SummaryFragment.dump ----> RECORD id ${record.id}")
             }
         }
+
+
+
+        LocalDate.now().startOfWeek()
     }
 
     companion object {
         const val TAG = "SummaryFragment"
 
-        const val RECORDING = "Recording"
-
         @JvmStatic
-        fun newInstance(recording: Recording): SummaryFragment {
-            val frag = SummaryFragment()
-            val bundle = Bundle()
-            bundle.putParcelable(RECORDING, recording)
-            frag.arguments = bundle
-
-            return frag
-        }
+        fun newInstance(): SummaryFragment = SummaryFragment()
     }
 
 }

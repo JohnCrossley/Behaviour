@@ -7,18 +7,20 @@ import androidx.lifecycle.ViewModel
 import com.jccword.behaviour.database.repository.ChildRepository
 import com.jccword.behaviour.domain.Child
 import com.jccword.behaviour.domain.Dichotomy
+import com.jccword.behaviour.domain.Recording
+import com.jccword.behaviour.domain.UserSession
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.lang.IllegalArgumentException
+import kotlin.IllegalArgumentException
 
-class WhoViewModel(childRepository: ChildRepository) : ViewModel() {
+class WhoViewModel(private val userSession: UserSession, childRepository: ChildRepository) : ViewModel() {
 
     val state = MutableLiveData<State>()
     val valid = MediatorLiveData<Boolean>()
     var dichotomy = MutableLiveData<Dichotomy>()
     val children = MutableLiveData<List<Child>>()
-    val selected = MutableLiveData<List<Long>>()
+    val selected = MutableLiveData<List<Child>>()
     val good = MutableLiveData<Boolean>()
     val bad = MutableLiveData<Boolean>()
 
@@ -74,6 +76,11 @@ class WhoViewModel(childRepository: ChildRepository) : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         subscriptions.dispose()
+    }
+
+    fun save(body: () -> Unit) {
+        userSession.recording = Recording(dichotomy.value ?: throw IllegalArgumentException("Dichotomy shouldn't be null"), selected.value ?: throw IllegalArgumentException("Children IDs shouldn't be null"))
+        body.invoke()
     }
 
     companion object {

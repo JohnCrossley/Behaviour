@@ -3,16 +3,18 @@ package com.jccword.behaviour.summary
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jccword.behaviour.database.entity.ChildBehaviourRecordEntity
 import com.jccword.behaviour.database.repository.ChildBehaviourRecordRepository
-import com.jccword.behaviour.domain.Recording
+import com.jccword.behaviour.domain.UserSession
 import com.jccword.behaviour.what.WhatViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class SummaryViewModel(private val childBehaviourRecordRepository: ChildBehaviourRecordRepository) : ViewModel() {
+class SummaryViewModel(private val userSession: UserSession, private val childBehaviourRecordRepository: ChildBehaviourRecordRepository) : ViewModel() {
 
     val state = MutableLiveData<State>()
+    val summary = MutableLiveData<Map<Long,List<ChildBehaviourRecordEntity>>>()
 
     private val subscriptions = CompositeDisposable()
 
@@ -21,13 +23,20 @@ class SummaryViewModel(private val childBehaviourRecordRepository: ChildBehaviou
         subscriptions.dispose()
     }
 
-    fun save(recording: Recording) {
-        subscriptions.add(childBehaviourRecordRepository.add(recording)
+    fun save() {
+        subscriptions.add(childBehaviourRecordRepository.add(userSession.recording ?: throw IllegalArgumentException("recording is null"))
+                .flatMap{
+                    val ids = userSession.recording?.children?.map { it.id } ?: throw IllegalArgumentException("children is null")
+                    state.postValue(State.SAVED)
+                    childBehaviourRecordRepository.thisWeek(ids)
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { state.value = State.SAVING }
                 .subscribe({
-                    state.value = State.SAVED })
+                    summary.value = it
+                    state.value = State.FETCHED_SUMMARY
+                })
                 { t ->
                     state.value = State.FAIL
                     Log.e(WhatViewModel.TAG, "Failed to save record", t)

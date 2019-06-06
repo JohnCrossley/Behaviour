@@ -8,6 +8,7 @@ import com.jccword.behaviour.database.repository.ChildBehaviourRecordRepository
 import com.jccword.behaviour.di.module.ActivityBuilderModule
 import com.jccword.behaviour.di.module.ApplicationModule
 import com.jccword.behaviour.di.module.DataModule
+import com.jccword.behaviour.domain.UserSession
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -41,6 +42,8 @@ interface ApplicationComponent: AndroidInjector<DaggerApplication> {
     fun getChildBehaviourRecordRepository(): ChildBehaviourRecordRepository
 
     fun getInitDatabase(): InitDatabase
+
+    fun getUserSession(): UserSession
 
 }
 

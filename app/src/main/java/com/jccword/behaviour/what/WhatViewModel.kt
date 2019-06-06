@@ -7,11 +7,12 @@ import androidx.lifecycle.ViewModel
 import com.jccword.behaviour.database.InitDatabase
 import com.jccword.behaviour.database.repository.BehaviourRepository
 import com.jccword.behaviour.domain.Behaviour
+import com.jccword.behaviour.domain.UserSession
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class WhatViewModel(behaviourRepository: BehaviourRepository, private val initDatabase: InitDatabase) : ViewModel() {
+class WhatViewModel(private val userSession: UserSession, behaviourRepository: BehaviourRepository, private val initDatabase: InitDatabase) : ViewModel() {
 
     val state = MediatorLiveData<State>()
     val valid = MediatorLiveData<Boolean>()
@@ -60,6 +61,11 @@ class WhatViewModel(behaviourRepository: BehaviourRepository, private val initDa
                     Log.e(TAG, "Failed to add default behaviours", t)
                 }
             )
+    }
+
+    fun save(body: () -> Unit) {
+        userSession.recording?.behaviourId = selected.value ?: throw IllegalArgumentException("No behaviour selected")
+        body.invoke()
     }
 
     companion object {

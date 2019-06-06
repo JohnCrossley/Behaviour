@@ -15,7 +15,6 @@ import com.jccword.behaviour.R
 import com.jccword.behaviour.di.InjectableModelViewFactory
 import com.jccword.behaviour.domain.Child
 import com.jccword.behaviour.domain.Dichotomy
-import com.jccword.behaviour.domain.Recording
 import com.jccword.behaviour.ui.*
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_who_chooser.*
@@ -67,10 +66,24 @@ class WhoFragment : DaggerFragment() {
         adapter.tracker = tracker
 
         tracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
-            override fun onSelectionChanged() {
-                model.selected.value = tracker.selection.toList()
-            }
-        })
+                override fun onSelectionChanged() {
+                    //rx overkill version
+                    /*val toList = Observable.just(tracker.selection.toList())
+                            .flatMapIterable { childIds ->
+                                val children = mutableListOf<Child>()
+                                children.add(model.children.value?.find { childIds.contains(it.id) }
+                                        ?: throw IllegalArgumentException("ID belongs to a Child that doesn't exist"))
+                                children
+                        }.toList().blockingGet()
+
+                    model.selected.value = toList.toList()*/
+
+                    //Kotlin std lib - non-rx
+                    val idList = tracker.selection.toList()
+                    val list = model.children.value?.filter { child ->  idList.contains(child.id) } ?: throw IllegalArgumentException("Children isn't set")
+                    model.selected.value = list.toList()
+                }
+            })
 
         model.state.observe(this, Observer {
             progressUi.hideProgress()
@@ -100,8 +113,9 @@ class WhoFragment : DaggerFragment() {
         })
 
         next.setOnClickListener {
-            val recording = Recording(model.dichotomy.value!!, model.selected.value!!)
-            navigation.toWhat(recording)
+            model.save{
+                navigation.toWhat()
+            }
         }
 
         good.setOnClickListener { model.dichotomy.value = Dichotomy.GOOD }

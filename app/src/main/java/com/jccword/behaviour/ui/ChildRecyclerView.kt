@@ -20,7 +20,7 @@ class ChildrenAdapter(private val context: Context?, hasTracker: Boolean) : Recy
         setHasStableIds(hasTracker)
     }
 
-    override fun getItemId(position: Int) = children[position].id!!
+    override fun getItemId(position: Int) = children[position].id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
         return ChildViewHolder(LayoutInflater.from(context).inflate(R.layout.child_tile, parent, false))

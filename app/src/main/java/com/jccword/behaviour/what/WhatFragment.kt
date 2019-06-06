@@ -60,9 +60,9 @@ class WhatFragment : DaggerFragment() {
                 StableIdKeyProvider(behavioursRecyclerView),
                 BehaviourViewHolderItemDetailsLookup(behavioursRecyclerView),
                 StorageStrategy.createLongStorage()
-            )
-            .withSelectionPredicate(SelectionPredicates.createSelectSingleAnything())
-            .build()
+        )
+                .withSelectionPredicate(SelectionPredicates.createSelectSingleAnything())
+                .build()
 
         adapter.tracker = tracker
 
@@ -76,9 +76,10 @@ class WhatFragment : DaggerFragment() {
         model.state.observe(this, Observer {
             progressUi.hideProgress()
 
-            when(it) {
+            when (it) {
                 State.LOADING -> progressUi.showProgress()
-                State.READY -> {}
+                State.READY -> {
+                }
                 State.FAIL -> TODO()
                 State.NO_BEHAVIOURS_IN_DB -> AlertDialog.Builder(context!!).createNoBehaviourDialog().show()
                 null -> IllegalArgumentException("State was null")
@@ -88,14 +89,11 @@ class WhatFragment : DaggerFragment() {
         model.valid.observe(this, Observer {
             next.isEnabled = it
         })
-        
+
         model.behaviours.observe(this, Observer { behaviourList -> adapter.update(behaviourList) })
 
         next.setOnClickListener {
-            val recording = arguments?.get(RECORDING) as Recording
-            recording.behaviourId = model.selected.value ?: throw IllegalArgumentException("No behaviour selection")
-
-            navigation.toSummary(recording)
+            model.save({ navigation.toSummary() })
         }
     }
 
@@ -109,17 +107,7 @@ class WhatFragment : DaggerFragment() {
     companion object {
         const val TAG = "WhatFragment"
 
-        const val RECORDING = "Recording"
-
         @JvmStatic
-        fun newInstance(recording: Recording): WhatFragment {
-            val frag = WhatFragment()
-            val bundle = Bundle()
-            bundle.putParcelable(RECORDING, recording)
-            frag.arguments = bundle
-
-            return frag
-        }
+        fun newInstance() = WhatFragment()
     }
-
 }

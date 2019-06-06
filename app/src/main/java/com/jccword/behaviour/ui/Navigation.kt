@@ -55,17 +55,17 @@ class Navigation(private val fragmentManager: FragmentManager) {
         }
     }
 
-    fun toWhat(recording: Recording) {
+    fun toWhat() {
         fragmentManager.transaction {
-            replace(R.id.content, WhatFragment.newInstance(recording), WhatFragment.TAG)
+            replace(R.id.content, WhatFragment.newInstance(), WhatFragment.TAG)
             addToBackStack(WhatFragment.TAG)
         }
     }
 
-    fun toSummary(recording: Recording) {
+    fun toSummary() {
         fragmentManager.popBackStack(DashboardFragment.TAG, POP_BACK_STACK_UP_TO_BUT_NOT_INCLUDING)
         fragmentManager.transaction {
-            replace(R.id.content, SummaryFragment.newInstance(recording), SummaryFragment.TAG)
+            replace(R.id.content, SummaryFragment.newInstance(), SummaryFragment.TAG)
             addToBackStack(SummaryFragment.TAG)
         }
     }

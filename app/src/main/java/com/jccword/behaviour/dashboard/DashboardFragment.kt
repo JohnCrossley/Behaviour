@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jccword.behaviour.ui.Navigation
 import com.jccword.behaviour.R
-import com.jccword.behaviour.dashboard.DashboardViewModel
 import com.jccword.behaviour.di.InjectableModelViewFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -49,7 +48,6 @@ class DashboardFragment : DaggerFragment() {
         } else {
             super.onOptionsItemSelected(item)
         }
-
     }
 
     companion object {
