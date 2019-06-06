@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.jccword.behaviour"
+        applicationId "com.jccworld.behaviour"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
