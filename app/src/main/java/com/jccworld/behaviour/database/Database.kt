@@ -26,7 +26,7 @@ abstract class Database : RoomDatabase() {
     abstract val childBehaviourRecordDao: ChildBehaviourRecordDao
 
     companion object {
-        internal val BEHAVIOUR_DB = "behaviour.db"
+        internal const val BEHAVIOUR_DB = "behaviour.db"
     }
     
 }
