@@ -1,15 +1,15 @@
 package com.jccworld.behaviour.ext
 
 import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
+import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.temporal.WeekFields
 import java.util.*
 
-fun LocalDate.startOfWeek(): LocalDate = with(WeekFields.of(Locale.getDefault()).firstDayOfWeek)
+fun LocalDate.startOfWeek(): LocalDate = with(WeekFields.of(Locale.getDefault()).dayOfWeek(), 1L)
 
-
-fun LocalDate.endOfWeek(): LocalDate = with(WeekFields.of(Locale.getDefault()).firstDayOfWeek)
-        .plusDays(6)
+fun LocalDate.endOfWeek(): LocalDate = with(WeekFields.of(Locale.getDefault()).dayOfWeek(), 7L)
 
 fun LocalDate.startOfDayEpoch(): Long = this.atStartOfDay(ZoneId.systemDefault())
         .toInstant()
