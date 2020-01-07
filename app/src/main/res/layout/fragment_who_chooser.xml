@@ -22,12 +22,12 @@
             android:layout_height="@dimen/tile"
             >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/smile"
-                android:textSize="@dimen/dichotomy"
-                tools:ignore="SpUsage" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sentiment_satisfied_black_90dp"
+                android:layout_gravity="center"
+                />
 
             <ImageView
                 android:id="@+id/goodSelected"
@@ -45,12 +45,12 @@
             android:layout_height="@dimen/tile"
             >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/frown"
-                android:textSize="@dimen/dichotomy"
-                tools:ignore="SpUsage" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sentiment_dissatisfied_black_90dp"
+                android:layout_gravity="center"
+                />
 
             <ImageView
                 android:id="@+id/badSelected"
