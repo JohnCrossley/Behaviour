@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.jccworld.behaviour.di.InjectableModelViewFactory
 import com.jccworld.behaviour.ui.Navigation
-import com.jccworld.behaviour.ui.ProgressUi
 import com.jccworld.behaviour.ui.NotificationUi
+import com.jccworld.behaviour.ui.ProgressUi
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class MainActivity : ProgressUi, NotificationUi, DaggerAppCompatActivity() {
@@ -34,7 +33,7 @@ class MainActivity : ProgressUi, NotificationUi, DaggerAppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        model = ViewModelProviders.of(this, injectableModelViewFactory).get(BootViewModel::class.java)
+        model = ViewModelProvider(this, injectableModelViewFactory).get(BootViewModel::class.java)
 
         supportFragmentManager.addOnBackStackChangedListener {
             println("[JCC] back stack changed: new size is ${supportFragmentManager.backStackEntryCount}")

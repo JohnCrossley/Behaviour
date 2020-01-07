@@ -2,7 +2,7 @@ package com.jccworld.behaviour.dashboard
 
 import android.os.Bundle
 import android.view.*
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jccworld.behaviour.ui.Navigation
 import com.jccworld.behaviour.R
@@ -29,7 +29,7 @@ class DashboardFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        model = ViewModelProviders.of(this, injectableModelViewFactory).get(DashboardViewModel::class.java)
+        model = ViewModelProvider(this, injectableModelViewFactory).get(DashboardViewModel::class.java)
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { navigation.toWho() }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.databinding.FragmentAddChildBinding
 import com.jccworld.behaviour.di.InjectableModelViewFactory
@@ -38,7 +38,7 @@ class AddChildFragment : DaggerFragment() {
 
         val binding = FragmentAddChildBinding.bind(view)
 
-        model = ViewModelProviders.of(this, injectableViewModelFactory).get(AddChildViewModel::class.java)
+        model = ViewModelProvider(this, injectableViewModelFactory).get(AddChildViewModel::class.java)
         binding.child = model
 
         model.valid.observe(this, Observer {
