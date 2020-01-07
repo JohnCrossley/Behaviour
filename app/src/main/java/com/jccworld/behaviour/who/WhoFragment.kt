@@ -133,7 +133,7 @@ class WhoFragment : DaggerFragment() {
     }
 
     companion object {
-        val TAG = "WhoFragment"
+        const val TAG = "WhoFragment"
 
         @JvmStatic
         fun newInstance() = WhoFragment()

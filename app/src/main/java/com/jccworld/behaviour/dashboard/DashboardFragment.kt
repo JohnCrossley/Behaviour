@@ -51,7 +51,7 @@ class DashboardFragment : DaggerFragment() {
     }
 
     companion object {
-        val TAG = "DashboardFragment"
+        const val TAG = "DashboardFragment"
 
         @JvmStatic
         fun newInstance() = DashboardFragment()

@@ -70,7 +70,7 @@ class ManageChildrenFragment : DaggerFragment() {
     }
 
     companion object {
-        val TAG = "ManageChildrenFragment"
+        const val TAG = "ManageChildrenFragment"
 
         @JvmStatic
         fun newInstance() = ManageChildrenFragment()
