@@ -85,7 +85,7 @@ class WhoFragment : DaggerFragment() {
                 }
             })
 
-        model.state.observe(this, Observer {
+        model.state.observe(viewLifecycleOwner, Observer {
             progressUi.hideProgress()
 
             when(it) {
@@ -96,19 +96,19 @@ class WhoFragment : DaggerFragment() {
             }
         })
 
-        model.good.observe(this, Observer {
+        model.good.observe(viewLifecycleOwner, Observer {
             good.isSelected = it
             goodSelected.visibility = if (it) View.VISIBLE else View.GONE
         })
 
-        model.bad.observe(this, Observer {
+        model.bad.observe(viewLifecycleOwner, Observer {
             bad.isSelected = it
             badSelected.visibility = if (it) View.VISIBLE else View.GONE
         })
 
-        model.children.observe(this, Observer<List<Child>> { childrenList -> adapter.update(childrenList) })
+        model.children.observe(viewLifecycleOwner, Observer<List<Child>> { childrenList -> adapter.update(childrenList) })
 
-        model.valid.observe(this, Observer {
+        model.valid.observe(viewLifecycleOwner, Observer {
             next.isEnabled = it
         })
 

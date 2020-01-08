@@ -41,11 +41,11 @@ class AddChildFragment : DaggerFragment() {
         model = ViewModelProvider(this, injectableViewModelFactory).get(AddChildViewModel::class.java)
         binding.child = model
 
-        model.valid.observe(this, Observer {
+        model.valid.observe(viewLifecycleOwner, Observer {
             next.isEnabled = it
         })
 
-        model.state.observe(this, Observer {
+        model.state.observe(viewLifecycleOwner, Observer {
             when (it) {
                 State.READY -> {
                     //NO-OP

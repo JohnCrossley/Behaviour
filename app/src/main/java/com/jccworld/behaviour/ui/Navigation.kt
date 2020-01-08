@@ -1,6 +1,7 @@
 package com.jccworld.behaviour.ui
 
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import androidx.fragment.app.transaction
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.addchild.AddChildFragment
@@ -22,7 +23,7 @@ class Navigation(private val fragmentManager: FragmentManager) {
         if (fragmentManager.findFragmentByTag(ManageChildrenFragment.TAG) != null) {
             fragmentManager.popBackStack(ManageChildrenFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         } else {
-            fragmentManager.transaction {
+            fragmentManager.commit {
                 replace(R.id.content, DashboardFragment.newInstance(), DashboardFragment.TAG)
                 addToBackStack(DashboardFragment.TAG)
             }
@@ -33,7 +34,7 @@ class Navigation(private val fragmentManager: FragmentManager) {
         if (fragmentManager.findFragmentByTag(AddChildFragment.TAG) != null) {
             fragmentManager.popBackStack(AddChildFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         } else {
-            fragmentManager.transaction {
+            fragmentManager.commit {
                 replace(R.id.content, ManageChildrenFragment.newInstance(), ManageChildrenFragment.TAG)
                 addToBackStack(ManageChildrenFragment.TAG)
             }
@@ -41,21 +42,21 @@ class Navigation(private val fragmentManager: FragmentManager) {
     }
 
     fun toAddChild() {
-        fragmentManager.transaction {
+        fragmentManager.commit {
             replace(R.id.content, AddChildFragment.newInstance(), AddChildFragment.TAG)
             addToBackStack(AddChildFragment.TAG)
         }
     }
 
     fun toWho() {
-        fragmentManager.transaction {
+        fragmentManager.commit {
             replace(R.id.content, WhoFragment.newInstance(), WhoFragment.TAG)
             addToBackStack(WhoFragment.TAG)
         }
     }
 
     fun toWhat() {
-        fragmentManager.transaction {
+        fragmentManager.commit {
             replace(R.id.content, WhatFragment.newInstance(), WhatFragment.TAG)
             addToBackStack(WhatFragment.TAG)
         }
@@ -63,7 +64,7 @@ class Navigation(private val fragmentManager: FragmentManager) {
 
     fun toSummary() {
         fragmentManager.popBackStack(DashboardFragment.TAG, POP_BACK_STACK_UP_TO_BUT_NOT_INCLUDING)
-        fragmentManager.transaction {
+        fragmentManager.commit {
             replace(R.id.content, SummaryFragment.newInstance(), SummaryFragment.TAG)
             addToBackStack(SummaryFragment.TAG)
         }

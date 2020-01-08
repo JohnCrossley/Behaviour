@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
@@ -47,7 +47,7 @@ class WhatFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        model = ViewModelProviders.of(this, injectableModelViewFactory).get(WhatViewModel::class.java)
+        model = ViewModelProvider(this, injectableModelViewFactory).get(WhatViewModel::class.java)
 
         behavioursRecyclerView.layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.behaviourColumns))
         adapter = BehaviourAdapter(context, true)
@@ -72,7 +72,7 @@ class WhatFragment : DaggerFragment() {
             }
         })
 
-        model.state.observe(this, Observer {
+        model.state.observe(viewLifecycleOwner, Observer {
             progressUi.hideProgress()
 
             when (it) {
@@ -85,11 +85,11 @@ class WhatFragment : DaggerFragment() {
             }
         })
 
-        model.valid.observe(this, Observer {
+        model.valid.observe(viewLifecycleOwner, Observer {
             next.isEnabled = it
         })
 
-        model.behaviours.observe(this, Observer { behaviourList -> adapter.update(behaviourList) })
+        model.behaviours.observe(viewLifecycleOwner, Observer { behaviourList -> adapter.update(behaviourList) })
 
         next.setOnClickListener {
             model.save({ navigation.toSummary() })

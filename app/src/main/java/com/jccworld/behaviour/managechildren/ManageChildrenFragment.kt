@@ -55,7 +55,7 @@ class ManageChildrenFragment : DaggerFragment() {
             navigation.toAddChild()
         }
 
-        model.state.observe(this, Observer {
+        model.state.observe(viewLifecycleOwner, Observer {
             when(it) {
                 State.LOADING -> progressUi.showProgress()
                 State.READY -> progressUi.hideProgress()
@@ -64,7 +64,7 @@ class ManageChildrenFragment : DaggerFragment() {
             }
         })
 
-        model.children.observe(this, Observer<List<Child>> { childList ->
+        model.children.observe(viewLifecycleOwner, Observer<List<Child>> { childList ->
             adapter.update(childList)
         })
     }

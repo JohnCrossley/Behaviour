@@ -46,7 +46,7 @@ class SummaryFragment : DaggerFragment() {
 
         dashboard.setOnClickListener{ navigation.toDashboard() }
 
-        model.state.observe(this, Observer {
+        model.state.observe(viewLifecycleOwner, Observer {
             progressUi.hideProgress()
             dashboard.visibility = View.GONE
 
