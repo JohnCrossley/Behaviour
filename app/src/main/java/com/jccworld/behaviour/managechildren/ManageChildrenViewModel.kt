@@ -8,8 +8,9 @@ import com.jccworld.behaviour.domain.Child
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class ManageChildrenViewModel(childRepository: ChildRepository): ViewModel() {
+class ManageChildrenViewModel @Inject constructor(childRepository: ChildRepository): ViewModel() {
 
     val state = MutableLiveData<State>()
     val children = MutableLiveData<List<Child>>()

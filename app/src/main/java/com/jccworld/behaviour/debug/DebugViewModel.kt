@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.jccworld.behaviour.database.repository.ChildRepository
 import com.jccworld.behaviour.domain.Child
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class DebugViewModel(val childRepository: ChildRepository): ViewModel() {
+class DebugViewModel @Inject constructor(val childRepository: ChildRepository): ViewModel() {
 
     val state = MutableLiveData<State>()
     val children = MutableLiveData<List<Child>>()

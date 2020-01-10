@@ -10,8 +10,9 @@ import com.jccworld.behaviour.what.WhatViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class SummaryViewModel(private val userSession: UserSession, private val childBehaviourRecordRepository: ChildBehaviourRecordRepository) : ViewModel() {
+class SummaryViewModel @Inject constructor(private val userSession: UserSession, private val childBehaviourRecordRepository: ChildBehaviourRecordRepository) : ViewModel() {
 
     val state = MutableLiveData<State>()
     val summary = MutableLiveData<Map<Long,List<ChildBehaviourRecordEntity>>>()

@@ -11,8 +11,9 @@ import com.jccworld.behaviour.domain.UserSession
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class WhatViewModel(private val userSession: UserSession, behaviourRepository: BehaviourRepository, private val initDatabase: InitDatabase) : ViewModel() {
+class WhatViewModel @Inject constructor(private val userSession: UserSession, behaviourRepository: BehaviourRepository, private val initDatabase: InitDatabase) : ViewModel() {
 
     val state = MediatorLiveData<State>()
     val valid = MediatorLiveData<Boolean>()

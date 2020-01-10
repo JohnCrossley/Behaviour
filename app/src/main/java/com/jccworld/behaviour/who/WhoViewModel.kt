@@ -12,9 +12,10 @@ import com.jccworld.behaviour.domain.UserSession
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 import kotlin.IllegalArgumentException
 
-class WhoViewModel(private val userSession: UserSession, childRepository: ChildRepository) : ViewModel() {
+class WhoViewModel @Inject constructor(private val userSession: UserSession, childRepository: ChildRepository) : ViewModel() {
 
     val state = MutableLiveData<State>()
     val valid = MediatorLiveData<Boolean>()

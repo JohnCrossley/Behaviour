@@ -6,8 +6,9 @@ import com.jccworld.behaviour.database.repository.ChildRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class BootViewModel(childRepository: ChildRepository): ViewModel() {
+class BootViewModel @Inject constructor(childRepository: ChildRepository): ViewModel() {
     private val subscriptions = CompositeDisposable()
 
     val state = MutableLiveData<State>()

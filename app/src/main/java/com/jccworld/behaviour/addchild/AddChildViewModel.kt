@@ -12,8 +12,9 @@ import com.jccworld.behaviour.domain.Child
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class AddChildViewModel(private val childRepository: ChildRepository): ViewModel(), Observable {
+class AddChildViewModel @Inject constructor(private val childRepository: ChildRepository): ViewModel(), Observable {
 
     val state = MutableLiveData<State>()
     val valid = MediatorLiveData<Boolean>()
