@@ -18,7 +18,10 @@ interface ChildBehaviourRecordDao {
     fun all(): Flowable<List<ChildBehaviourRecordEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg childBehaviourRecordEntity: ChildBehaviourRecordEntity): Single<List<Long>>
+    fun insert(childBehaviourRecordEntity: ChildBehaviourRecordEntity): Single<Long>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertBatch(vararg childBehaviourRecordEntity: ChildBehaviourRecordEntity): Single<List<Long>>
 
     @Query("SELECT * FROM child_behaviour_record WHERE childId IN (:childIds) AND created >= :startDateTime AND created <= :endDateTime ORDER BY childId, created")
     fun period(childIds: List<Long>, startDateTime: Long, endDateTime: Long): Single<List<ChildBehaviourRecordEntity>>

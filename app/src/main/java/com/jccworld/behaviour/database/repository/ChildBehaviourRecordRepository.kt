@@ -27,7 +27,7 @@ class ChildBehaviourRecordRepository @Inject constructor(private val childBehavi
                     created = Calendar.getInstance())
         }
 
-        return childBehaviourRecordDao.insert(*list)
+        return childBehaviourRecordDao.insertBatch(*list)
     }
 
     fun thisWeek(childIds: List<Long>): Single<Map<Long, List<ChildBehaviourRecordEntity>>> {
