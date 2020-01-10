@@ -6,6 +6,7 @@ import androidx.fragment.app.transaction
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.addchild.AddChildFragment
 import com.jccworld.behaviour.dashboard.DashboardFragment
+import com.jccworld.behaviour.debug.DebugFragment
 import com.jccworld.behaviour.managechildren.ManageChildrenFragment
 import com.jccworld.behaviour.summary.SummaryFragment
 import com.jccworld.behaviour.what.WhatFragment
@@ -15,8 +16,12 @@ class Navigation(private val fragmentManager: FragmentManager) {
 
     fun onBoard() {
         toDashboard()
+
+        toDebug()
+        /*
         toManageChildren()
         toAddChild()
+        */
     }
 
     fun toDashboard() {
@@ -67,6 +72,13 @@ class Navigation(private val fragmentManager: FragmentManager) {
         fragmentManager.commit {
             replace(R.id.content, SummaryFragment.newInstance(), SummaryFragment.TAG)
             addToBackStack(SummaryFragment.TAG)
+        }
+    }
+
+    fun toDebug() {
+        fragmentManager.commit {
+            replace(R.id.content, DebugFragment.newInstance(), DebugFragment.TAG)
+            addToBackStack(DebugFragment.TAG)
         }
     }
 

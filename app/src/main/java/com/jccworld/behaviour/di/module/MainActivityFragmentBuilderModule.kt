@@ -2,6 +2,7 @@ package com.jccworld.behaviour.di.module
 
 import com.jccworld.behaviour.addchild.AddChildFragment
 import com.jccworld.behaviour.dashboard.DashboardFragment
+import com.jccworld.behaviour.debug.DebugFragment
 import com.jccworld.behaviour.managechildren.ManageChildrenFragment
 import com.jccworld.behaviour.summary.SummaryFragment
 import com.jccworld.behaviour.what.WhatFragment
@@ -30,5 +31,8 @@ abstract class MainActivityFragmentBuilderModule {
 
     @ContributesAndroidInjector
     internal abstract fun summaryFragment(): SummaryFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun debugFragment(): DebugFragment
 
 }

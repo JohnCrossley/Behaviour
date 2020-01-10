@@ -14,6 +14,7 @@ import com.jccworld.behaviour.database.repository.ChildBehaviourRecordRepository
 import com.jccworld.behaviour.di.component.DaggerInjectableModelViewFactoryComponent
 import com.jccworld.behaviour.domain.UserSession
 import com.jccworld.behaviour.managechildren.ManageChildrenViewModel
+import com.jccworld.behaviour.debug.DebugViewModel
 import com.jccworld.behaviour.summary.SummaryViewModel
 import com.jccworld.behaviour.what.WhatViewModel
 import com.jccworld.behaviour.who.WhoViewModel
@@ -54,6 +55,7 @@ class InjectableModelViewFactory @Inject constructor(application: Application, m
             modelClass.isAssignableFrom(WhoViewModel::class.java) -> WhoViewModel(userSession, childRepository) as T
             modelClass.isAssignableFrom(WhatViewModel::class.java) -> WhatViewModel(userSession, behaviourRepository, initDatabase) as T
             modelClass.isAssignableFrom(SummaryViewModel::class.java) -> SummaryViewModel(userSession, childBehaviourRecordRepository) as T
+            modelClass.isAssignableFrom(DebugViewModel::class.java) -> DebugViewModel(childRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel: $modelClass")
         }
     }

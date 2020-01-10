@@ -23,4 +23,5 @@
     <string name="no_behaviours_dialog_add_defaults">Defaults</string>
     <string name="no_behaviours_dialog_customise">Customise</string>
     <string name="to_dashboard">Back to dashboard</string>
+    <string name="debug">Debug controls</string>
 </resources>

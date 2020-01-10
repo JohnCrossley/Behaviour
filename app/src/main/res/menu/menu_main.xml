@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/manageChildren"
         application:showAsAction="never" />
+
+    <item
+        android:id="@+id/debug"
+        android:orderInCategory="100"
+        android:title="@string/debug"
+        application:showAsAction="never" />
 </menu>

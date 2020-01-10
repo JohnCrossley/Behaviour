@@ -45,6 +45,9 @@ class DashboardFragment : DaggerFragment() {
         return if (id == R.id.manageChildren) {
             navigation.toManageChildren()
             true
+        } else if (id == R.id.debug) {
+            navigation.toDebug()
+            true
         } else {
             super.onOptionsItemSelected(item)
         }
