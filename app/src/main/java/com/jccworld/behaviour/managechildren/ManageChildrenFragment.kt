@@ -60,7 +60,7 @@ class ManageChildrenFragment : DaggerFragment() {
                 State.LOADING -> progressUi.showProgress()
                 State.READY -> progressUi.hideProgress()
                 State.FAIL -> notificationUi.showMessage(R.string.load_children_failed)
-                null -> IllegalArgumentException("State was null")
+                null -> throw IllegalArgumentException("State was null")
             }
         })
 

@@ -57,7 +57,7 @@ class AddChildFragment : DaggerFragment() {
                 State.FAIL -> {
                     notificationUi.showMessage(R.string.add_child_failed)
                 }
-                null -> IllegalArgumentException("State was null")
+                null -> throw IllegalArgumentException("State was null")
             }
         })
 

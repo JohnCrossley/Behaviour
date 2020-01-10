@@ -61,7 +61,7 @@ class SummaryFragment : DaggerFragment() {
                     dump(model.summary.value!!)
                 }
                 State.FAIL -> notificationUi.showMessage(R.string.save_record_failed)
-                null -> IllegalArgumentException("State is null")
+                null -> throw IllegalArgumentException("State is null")
             }
         })
 

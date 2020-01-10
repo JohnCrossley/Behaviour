@@ -54,7 +54,7 @@ class WhoViewModel(private val userSession: UserSession, childRepository: ChildR
                     bad.value = true
                     good.value = false
                 }
-                else -> IllegalArgumentException("Invalid dichotomy $it")
+                else -> throw IllegalArgumentException("Invalid dichotomy $it")
             }
         }
 

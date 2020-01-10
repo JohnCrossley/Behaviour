@@ -54,7 +54,7 @@ class MainActivity : ProgressUi, NotificationUi, DaggerAppCompatActivity() {
                     State.NO_CHILDREN_IN_DB -> navigation.onBoard()
                     State.CHILDREN_IN_DB -> navigation.toDashboard()
                     State.FAILED_TO_DETERMINE -> navigation.toDashboard()
-                    null -> IllegalArgumentException("State was null")
+                    null -> throw IllegalArgumentException("State was null")
 
                 }
             })

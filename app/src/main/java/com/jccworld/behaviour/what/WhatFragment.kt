@@ -81,7 +81,7 @@ class WhatFragment : DaggerFragment() {
                 }
                 State.FAIL -> TODO()
                 State.NO_BEHAVIOURS_IN_DB -> AlertDialog.Builder(context!!).createNoBehaviourDialog().show()
-                null -> IllegalArgumentException("State was null")
+                null -> throw IllegalArgumentException("State was null")
             }
         })
 
@@ -92,7 +92,7 @@ class WhatFragment : DaggerFragment() {
         model.behaviours.observe(viewLifecycleOwner, Observer { behaviourList -> adapter.update(behaviourList) })
 
         next.setOnClickListener {
-            model.save({ navigation.toSummary() })
+            model.save { navigation.toSummary() }
         }
     }
 

@@ -67,18 +67,6 @@ class WhoFragment : DaggerFragment() {
 
         tracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
                 override fun onSelectionChanged() {
-                    //rx overkill version
-                    /*val toList = Observable.just(tracker.selection.toList())
-                            .flatMapIterable { childIds ->
-                                val children = mutableListOf<Child>()
-                                children.add(model.children.value?.find { childIds.contains(it.id) }
-                                        ?: throw IllegalArgumentException("ID belongs to a Child that doesn't exist"))
-                                children
-                        }.toList().blockingGet()
-
-                    model.selected.value = toList.toList()*/
-
-                    //Kotlin std lib - non-rx
                     val idList = tracker.selection.toList()
                     val list = model.children.value?.filter { child ->  idList.contains(child.id) } ?: throw IllegalArgumentException("Children isn't set")
                     model.selected.value = list.toList()
@@ -92,7 +80,7 @@ class WhoFragment : DaggerFragment() {
                 State.LOADING -> progressUi.showProgress()
                 State.READY -> progressUi.hideProgress()
                 State.FAIL -> notificationUi.showMessage(R.string.load_children_failed)
-                null -> IllegalArgumentException("State was null")
+                null -> throw IllegalArgumentException("State was null")
             }
         })
 

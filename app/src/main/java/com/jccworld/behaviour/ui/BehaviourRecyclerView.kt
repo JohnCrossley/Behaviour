@@ -26,7 +26,7 @@ class BehaviourAdapter(private val context: Context?, hasTracker: Boolean) : Rec
         return BehaviourViewHolder(LayoutInflater.from(context).inflate(R.layout.behaviour_tile, parent, false))
     }
 
-    override fun getItemCount()= behaviours.size
+    override fun getItemCount() = behaviours.size
 
     override fun onBindViewHolder(holder: BehaviourViewHolder, position: Int) {
         val behaviour = behaviours[position]
