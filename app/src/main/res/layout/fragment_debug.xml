@@ -5,8 +5,45 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/addDebugData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hello" />
+        android:text="Add test data to db" />
+
+    <Button
+        android:id="@+id/logChildren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log children" />
+
+    <Button
+        android:id="@+id/logBehaviours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log behaviours" />
+
+    <Button
+        android:id="@+id/logRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log records" />
+
+    <Button
+        android:id="@+id/clearLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear log" />
+
+    <EditText
+        android:id="@+id/log"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#bbaabb"
+        android:textSize="10sp"
+        android:gravity="top|left"
+        android:scrollbars="horizontal"
+        android:scrollbarStyle="outsideOverlay"
+        />
 
 </LinearLayout>

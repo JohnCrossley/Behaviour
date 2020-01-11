@@ -11,6 +11,8 @@ import com.jccworld.behaviour.ui.Navigation
 import com.jccworld.behaviour.ui.NotificationUi
 import com.jccworld.behaviour.ui.ProgressUi
 import dagger.android.support.DaggerFragment
+import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_debug.*
 import javax.inject.Inject
 
 class DebugFragment : DaggerFragment() {
@@ -28,6 +30,8 @@ class DebugFragment : DaggerFragment() {
     @Inject
     lateinit var injectableModelViewFactory: InjectableModelViewFactory
 
+    private val subscriptions = CompositeDisposable()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_debug, container, false)
@@ -37,6 +41,24 @@ class DebugFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         model = ViewModelProvider(this, injectableModelViewFactory).get(DebugViewModel::class.java)
+
+        addDebugData.setOnClickListener { model.addDebugData() }
+        logChildren.setOnClickListener { model.logChildren() }
+        logBehaviours.setOnClickListener { model.logBehaviours() }
+        logRecords.setOnClickListener { model.logRecords() }
+        clearLog.setOnClickListener { log.setText("") }
+
+        subscriptions.add(model.log.subscribe(
+                { event -> log.setText("${log.text}\n$event") },
+                { e -> log.setText("${log.text}\nUnexpected: $e") }
+            )
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        subscriptions.clear()
     }
 
     companion object {

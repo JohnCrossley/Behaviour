@@ -18,10 +18,8 @@ class Navigation(private val fragmentManager: FragmentManager) {
         toDashboard()
 
         toDebug()
-        /*
         toManageChildren()
         toAddChild()
-        */
     }
 
     fun toDashboard() {

@@ -15,6 +15,8 @@ import javax.inject.Singleton
 
 @Singleton
 class ChildBehaviourRecordRepository @Inject constructor(private val childBehaviourRecordDao: ChildBehaviourRecordDao) {
+    fun all() = childBehaviourRecordDao.all()
+
     fun count(): Single<Int> = childBehaviourRecordDao.count()
 
     fun add(recording: Recording): Single<List<Long>> {
@@ -24,7 +26,7 @@ class ChildBehaviourRecordRepository @Inject constructor(private val childBehavi
                     childId = recording.children[it].id,
                     behaviourId = recording.behaviourId,
                     stars = recording.stars,
-                    created = Calendar.getInstance())
+                    created = recording.time)
         }
 
         return childBehaviourRecordDao.insertBatch(*list)
