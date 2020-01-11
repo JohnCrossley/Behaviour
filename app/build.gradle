@@ -82,6 +82,8 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+
 
     implementation "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
 
