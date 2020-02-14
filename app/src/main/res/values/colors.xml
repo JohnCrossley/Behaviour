@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="textOverImageOverlayBackground">#aaffffff</color>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#0A175C</color>
+    <color name="colorAccent">#4CAF50</color>
+    <color name="white">#ffffff</color>
+
+    <color name="design_snackbar_background_color" tools:override="true">@color/colorAccent</color>
 </resources>

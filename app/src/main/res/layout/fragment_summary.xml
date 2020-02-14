@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:application="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/medium">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Summary"/>
+        android:layout_height="wrap_content"
+        android:text="@string/summary_title"
+        android:textAppearance="@style/Title"
+        application:layout_constraintEnd_toEndOf="parent"
+        application:layout_constraintStart_toStartOf="parent"
+        application:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/to_dashboard"/>
+        android:text="@string/to_dashboard"
+        application:layout_constraintBottom_toBottomOf="parent"
+        application:layout_constraintEnd_toEndOf="parent"
+        application:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

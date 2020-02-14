@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">Behaviour</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="smile">😀</string>
-    <string name="frown">☹️</string>
     <string name="dichotomy">Dichotomy</string>
+    <string name="bad">Bad</string>
+    <string name="good">Good</string>
     <string name="child">Child</string>
     <string name="next">Next</string>
     <string name="manageChildren">Manage children</string>
@@ -24,4 +22,20 @@
     <string name="no_behaviours_dialog_customise">Customise</string>
     <string name="to_dashboard">Back to dashboard</string>
     <string name="debug">Debug controls</string>
+    <string name="add_child_title">Add a child</string>
+    <string name="last_name">Last name (optional)</string>
+    <string name="first_name">First name</string>
+    <string name="summary_title">Summary</string>
+    <string name="who_title">Who did what?</string>
+    <string name="debug_add_test_data">Add test data to db</string>
+    <string name="debug_clear">Clear</string>
+    <string name="debug_log_children">Children</string>
+    <string name="debug_log_behaviours">Behaviours</string>
+    <string name="debug_log_records">Records</string>
+    <string name="debug_log">Log</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="what_title">What did they do?</string>
+    <string name="debug_log_messages">Log messages</string>
+    <string name="add_icon_cd">Silhouette of a child</string>
+    <string name="manage_title">Manage children</string>
 </resources>

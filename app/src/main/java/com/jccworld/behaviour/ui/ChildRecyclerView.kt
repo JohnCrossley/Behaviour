@@ -12,7 +12,12 @@ import com.jccworld.behaviour.R
 import com.jccworld.behaviour.domain.Child
 import kotlinx.android.synthetic.main.child_tile.view.*
 
-class ChildrenAdapter(private val context: Context?, hasTracker: Boolean) : RecyclerView.Adapter<ChildViewHolder>() {
+class ChildrenAdapter(
+    private val context: Context?,
+    hasTracker: Boolean,
+    private val selectedColour: Int,
+    private val unselectedColour: Int
+) : RecyclerView.Adapter<ChildViewHolder>() {
     val children = mutableListOf<Child>()
     var tracker: SelectionTracker<Long>? = null
 
@@ -23,7 +28,7 @@ class ChildrenAdapter(private val context: Context?, hasTracker: Boolean) : Recy
     override fun getItemId(position: Int) = children[position].id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
-        return ChildViewHolder(LayoutInflater.from(context).inflate(R.layout.child_tile, parent, false))
+        return ChildViewHolder(LayoutInflater.from(context).inflate(R.layout.child_tile, parent, false), selectedColour, unselectedColour)
     }
 
     override fun getItemCount()= children.size
@@ -42,9 +47,9 @@ class ChildrenAdapter(private val context: Context?, hasTracker: Boolean) : Recy
     }
 }
 
-class ChildViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ChildViewHolder(view: View, private val selectedColour: Int, private val unselectedColour: Int) : RecyclerView.ViewHolder(view) {
     val name = view.name!!
-    private val selected = view.selected!!
+    private val image = view.image!!
 
     fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
             object : ItemDetailsLookup.ItemDetails<Long>() {
@@ -55,9 +60,20 @@ class ChildViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(child: Child, activated: Boolean = false) {
         itemView.isSelected = activated
-        name.text = child.firstName
+        name.text = child.fullName
         itemView.isActivated = activated
-        selected.visibility = if (activated) View.VISIBLE else View.GONE
+        image.contentDescription = child.fullName
+
+        when(activated) {
+            true -> {
+                image.setColorFilter(selectedColour)
+                name.setTextColor(selectedColour)
+            }
+            false -> {
+                image.setColorFilter(unselectedColour)
+                name.setTextColor(unselectedColour)
+            }
+        }
     }
 }
 

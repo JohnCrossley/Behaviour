@@ -3,11 +3,11 @@ package com.jccworld.behaviour.dashboard
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.jccworld.behaviour.ui.Navigation
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.di.InjectableModelViewFactory
+import com.jccworld.behaviour.ui.Navigation
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import javax.inject.Inject
 
 class DashboardFragment : DaggerFragment() {
@@ -31,7 +31,6 @@ class DashboardFragment : DaggerFragment() {
 
         model = ViewModelProvider(this, injectableModelViewFactory).get(DashboardViewModel::class.java)
 
-        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { navigation.toWho() }
     }
 
@@ -40,16 +39,18 @@ class DashboardFragment : DaggerFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        return if (id == R.id.manageChildren) {
-            navigation.toManageChildren()
-            true
-        } else if (id == R.id.debug) {
-            navigation.toDebug()
-            true
-        } else {
-            super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.manageChildren -> {
+                navigation.toManageChildren()
+                true
+            }
+            R.id.debug -> {
+                navigation.toDebug()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 

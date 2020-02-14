@@ -2,7 +2,6 @@ package com.jccworld.behaviour.ui
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
-import androidx.fragment.app.transaction
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.addchild.AddChildFragment
 import com.jccworld.behaviour.dashboard.DashboardFragment
@@ -16,9 +15,6 @@ class Navigation(private val fragmentManager: FragmentManager) {
 
     fun onBoard() {
         toDashboard()
-
-        toDebug()
-        toManageChildren()
         toAddChild()
     }
 

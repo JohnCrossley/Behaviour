@@ -12,8 +12,13 @@ import com.jccworld.behaviour.R
 import com.jccworld.behaviour.domain.Behaviour
 import kotlinx.android.synthetic.main.behaviour_tile.view.*
 
-class BehaviourAdapter(private val context: Context?, hasTracker: Boolean) : RecyclerView.Adapter<BehaviourViewHolder>() {
-    val behaviours = mutableListOf<Behaviour>()
+class BehaviourAdapter(
+    private val context: Context?,
+    hasTracker: Boolean,
+    private val selectedColour: Int,
+    private val unselectedColour: Int
+) : RecyclerView.Adapter<BehaviourViewHolder>() {
+    private val behaviours = mutableListOf<Behaviour>()
     var tracker: SelectionTracker<Long>? = null
 
     init {
@@ -23,7 +28,7 @@ class BehaviourAdapter(private val context: Context?, hasTracker: Boolean) : Rec
     override fun getItemId(position: Int) = behaviours[position].id!!
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BehaviourViewHolder {
-        return BehaviourViewHolder(LayoutInflater.from(context).inflate(R.layout.behaviour_tile, parent, false))
+        return BehaviourViewHolder(LayoutInflater.from(context).inflate(R.layout.behaviour_tile, parent, false), selectedColour, unselectedColour)
     }
 
     override fun getItemCount() = behaviours.size
@@ -42,9 +47,9 @@ class BehaviourAdapter(private val context: Context?, hasTracker: Boolean) : Rec
     }
 }
 
-class BehaviourViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val name = view.name!!
-    private val selected = view.selected!!
+class BehaviourViewHolder(view: View, private val selectedColour: Int, private val unselectedColour: Int) : RecyclerView.ViewHolder(view) {
+    val text = view.behaviour!!
+    private val image = view.image!!
 
     fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
             object : ItemDetailsLookup.ItemDetails<Long>() {
@@ -55,9 +60,20 @@ class BehaviourViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(behaviour: Behaviour, activated: Boolean = false) {
         itemView.isSelected = activated
-        name.text = behaviour.name
+        text.text = behaviour.name
         itemView.isActivated = activated
-        selected.visibility = if (activated) View.VISIBLE else View.GONE
+        image.contentDescription = behaviour.name
+
+        when(activated) {
+            true -> {
+                image.setColorFilter(selectedColour)
+                text.setTextColor(selectedColour)
+            }
+            false -> {
+                image.setColorFilter(unselectedColour)
+                text.setTextColor(unselectedColour)
+            }
+        }
     }
 }
 

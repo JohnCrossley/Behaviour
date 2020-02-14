@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:application="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    >
 
     <data>
         <variable name="child"
@@ -9,9 +11,31 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/medium">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_child_title"
+            android:textAppearance="@style/Title"
+            application:layout_constraintEnd_toEndOf="parent"
+            application:layout_constraintStart_toStartOf="parent"
+            application:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:contentDescription="@string/add_icon_cd"
+            application:srcCompat="@drawable/ic_person_white_90dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/firstNameTIL"
@@ -19,13 +43,15 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/icon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First name"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="@string/first_name"
                 android:text="@={child.firstName}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -36,13 +62,15 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTIL">
+            app:layout_constraintTop_toBottomOf="@id/firstNameTIL">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Last name (optional)"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="@string/last_name"
                 android:text="@={child.lastName}" />
 
         </com.google.android.material.textfield.TextInputLayout>

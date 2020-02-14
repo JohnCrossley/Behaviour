@@ -7,13 +7,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.jccworld.behaviour.ui.Navigation
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.di.InjectableModelViewFactory
 import com.jccworld.behaviour.domain.Child
-import com.jccworld.behaviour.ui.ChildrenAdapter
-import com.jccworld.behaviour.ui.NotificationUi
-import com.jccworld.behaviour.ui.ProgressUi
+import com.jccworld.behaviour.ui.*
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_manage_children.*
 import java.lang.IllegalArgumentException
@@ -44,9 +41,7 @@ class ManageChildrenFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         model = ViewModelProvider(this, injectableModelViewFactory).get(ManageChildrenViewModel::class.java)
-
-        childrenRecyclerView.layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.childrenColumns))
-        adapter = ChildrenAdapter(context, false)
+        adapter = ChildrenAdapter(context, false, context!!.getSelectedColour(), context!!.getUnselectedColour())
         childrenRecyclerView.adapter = adapter
 
         dashboard.setOnClickListener { navigation.toDashboard() }

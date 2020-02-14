@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.selection.SelectionPredicates
@@ -18,7 +19,6 @@ import com.jccworld.behaviour.domain.Dichotomy
 import com.jccworld.behaviour.ui.*
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_who_chooser.*
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class WhoFragment : DaggerFragment() {
@@ -47,10 +47,15 @@ class WhoFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        @ColorInt
+        val selectedColour = context!!.getSelectedColour()
+
+        @ColorInt
+        val unselectedColour = context!!.getUnselectedColour()
+
         model = ViewModelProvider(this, injectableModelViewFactory).get(WhoViewModel::class.java)
 
-        childrenRecyclerView.layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.childrenColumns))
-        adapter = ChildrenAdapter(context, true)
+        adapter = ChildrenAdapter(context, true, selectedColour, unselectedColour)
         childrenRecyclerView.adapter = adapter
 
         val tracker = SelectionTracker.Builder<Long>(
@@ -86,12 +91,12 @@ class WhoFragment : DaggerFragment() {
 
         model.good.observe(viewLifecycleOwner, Observer {
             good.isSelected = it
-            goodSelected.visibility = if (it) View.VISIBLE else View.GONE
+            good.setColorFilter(if (it) selectedColour else unselectedColour)
         })
 
         model.bad.observe(viewLifecycleOwner, Observer {
             bad.isSelected = it
-            badSelected.visibility = if (it) View.VISIBLE else View.GONE
+            bad.setColorFilter(if (it) selectedColour else unselectedColour)
         })
 
         model.children.observe(viewLifecycleOwner, Observer<List<Child>> { childrenList -> adapter.update(childrenList) })

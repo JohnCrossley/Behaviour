@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -49,8 +50,13 @@ class WhatFragment : DaggerFragment() {
 
         model = ViewModelProvider(this, injectableModelViewFactory).get(WhatViewModel::class.java)
 
-        behavioursRecyclerView.layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.behaviourColumns))
-        adapter = BehaviourAdapter(context, true)
+        @ColorInt
+        val selectedColour = context!!.getSelectedColour()
+
+        @ColorInt
+        val unselectedColour = context!!.getUnselectedColour()
+
+        adapter = BehaviourAdapter(context, true, selectedColour, unselectedColour)
         behavioursRecyclerView.adapter = adapter
 
         val tracker = SelectionTracker.Builder<Long>(

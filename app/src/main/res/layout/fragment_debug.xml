@@ -1,74 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/medium">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/addDebugData"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/debug_add_test_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/addDebugData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add test data to db" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+    <Button
+        android:id="@+id/clearLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/clearLog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clear" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/logChildren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_log_children"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addDebugData" />
+
+    <Button
+        android:id="@+id/logBehaviours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_log_behaviours"
+        app:layout_constraintBaseline_toBaselineOf="@+id/logRecords"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/logRecords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_log_records"
+        app:layout_constraintBaseline_toBaselineOf="@+id/logChildren"
+        app:layout_constraintEnd_toStartOf="@+id/logBehaviours"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toEndOf="@+id/logChildren" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/logChildren"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Children" />
-
-        <Button
-            android:id="@+id/logBehaviours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Behaviours" />
-
-        <Button
-            android:id="@+id/logRecords"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Records" />
-
-    </LinearLayout>
+        android:text="@string/debug_log"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logChildren" />
 
     <EditText
         android:id="@+id/log"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:background="#bbaabb"
-        android:textSize="10sp"
-        android:gravity="top|left"
-        android:scrollbars="horizontal"
+        android:enabled="false"
         android:fadeScrollbars="false"
+        android:gravity="top|start"
+        android:hint="@string/debug_log_messages"
+        android:importantForAutofill="no"
+        android:inputType="textLongMessage"
         android:scrollbarStyle="outsideOverlay"
-        />
+        android:scrollbars="horizontal"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        tools:ignore="SmallSp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
