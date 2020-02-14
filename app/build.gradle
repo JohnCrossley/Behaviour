@@ -16,8 +16,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = ["room.schemaLocation":
-                                     "$projectDir/schemas".toString()]
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
 
@@ -68,7 +67,7 @@ ext {
             recyclerview_selection: "1.0.0",
             material_design: "1.0.0",
             lifecycle_extensions: "2.2.0",
-            lifecycler_compiler: "2.2.0-alpha01",
+            lifecycle_compiler_java_8: "1.1.1",
 
             constraintlayout: "1.1.3",
             legacy_support_v4: "1.0.0"
@@ -109,7 +108,7 @@ dependencies {
     // LIFECYCLE ==============================================================
 
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_extensions"
-    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycler_compiler"
+    implementation "android.arch.lifecycle:common-java8:$versions.lifecycle_compiler_java_8"
 
     // DATABASE ===============================================================
 
