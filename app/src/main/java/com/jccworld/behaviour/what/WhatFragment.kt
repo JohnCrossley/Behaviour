@@ -12,14 +12,11 @@ import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
-import androidx.recyclerview.widget.GridLayoutManager
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.di.InjectableModelViewFactory
 import com.jccworld.behaviour.ui.*
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_what_chooser.*
-import kotlinx.android.synthetic.main.fragment_what_chooser.next
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class WhatFragment : DaggerFragment() {

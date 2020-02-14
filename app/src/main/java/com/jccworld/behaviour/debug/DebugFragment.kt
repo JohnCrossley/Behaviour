@@ -1,5 +1,6 @@
 package com.jccworld.behaviour.debug
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,7 @@ class DebugFragment : DaggerFragment() {
         return inflater.inflate(R.layout.fragment_debug, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

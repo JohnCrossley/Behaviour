@@ -8,7 +8,7 @@ import dagger.android.DaggerApplication
 
 class Application : DaggerApplication() {
 
-    var component: ApplicationComponent = DaggerApplicationComponent.builder().app(this).build()
+    private var component: ApplicationComponent = DaggerApplicationComponent.builder().app(this).build()
 
     init {
         component.inject(this)
@@ -18,13 +18,11 @@ class Application : DaggerApplication() {
         super.onCreate()
         AndroidThreeTen.init(this)
 
-        System.out.println("[JCC] - APP START ***********************************************************************")
+        println("[JCC] - APP START ***********************************************************************")
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return component
     }
-
-    fun component(): ApplicationComponent = component
 
 }

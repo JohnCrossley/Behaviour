@@ -74,7 +74,7 @@ class DebugViewModel @Inject constructor(
         )
     }
 
-    fun o(): Observable<Calendar> {
+    private fun o(): Observable<Calendar> {
         val now = Calendar.getInstance()
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.DAY_OF_MONTH, 1)

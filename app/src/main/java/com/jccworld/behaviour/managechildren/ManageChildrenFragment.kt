@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.jccworld.behaviour.R
 import com.jccworld.behaviour.di.InjectableModelViewFactory
 import com.jccworld.behaviour.domain.Child
 import com.jccworld.behaviour.ui.*
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_manage_children.*
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class ManageChildrenFragment : DaggerFragment() {

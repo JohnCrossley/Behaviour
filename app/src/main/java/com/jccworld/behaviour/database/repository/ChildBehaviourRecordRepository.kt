@@ -2,14 +2,13 @@ package com.jccworld.behaviour.database.repository
 
 import com.jccworld.behaviour.database.dao.ChildBehaviourRecordDao
 import com.jccworld.behaviour.database.entity.ChildBehaviourRecordEntity
-import com.jccworld.behaviour.domain.*
+import com.jccworld.behaviour.domain.Recording
 import com.jccworld.behaviour.ext.endOfDayEpoch
 import com.jccworld.behaviour.ext.endOfWeek
 import com.jccworld.behaviour.ext.startOfDayEpoch
 import com.jccworld.behaviour.ext.startOfWeek
 import io.reactivex.Single
 import org.threeten.bp.LocalDate
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -1,9 +1,7 @@
 package com.jccworld.behaviour.ext
 
 import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.temporal.WeekFields
 import java.util.*
 
